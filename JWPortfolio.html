@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jacob Wheeler - CPA, Entrepreneur, and Surfer. Professional portfolio showcasing accounting expertise and business ventures.">
+    <meta name="keywords" content="CPA, Entrepreneur, Portfolio, Jacob Wheeler, Accounting, Business">
+    <meta name="author" content="Jacob Wheeler">
+    <title>Jacob Wheeler - CPA & Entrepreneur</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREAABEREREREQAAEREREREREAABERERERIQAAAREREREREAABEREREREREAABEREREREREAABEREREREREAABEREREREREAABEREREREREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+    
+    <!-- Load external styles -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #333;
+            --white: #fff;
+            --card-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Spotify Integration */
+        .spotify-player {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #1DB954;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+
+        .spotify-player:hover {
+            transform: scale(1.05);
+        }
+
+        .spotify-player i {
+            color: var(--white);
+        }
+
+        .spotify-player span {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Navigation Menu */
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .name-highlight {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            transition: transform 0.5s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        .name-highlight:hover {
+            transform: translateY(-5px) rotate(2deg);
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.5s;
+        }
+
+        /* Sections and Cards */
+        section {
+            padding: 5rem 2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.15);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+
+            .spotify-player span {
+                display: none;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader">
+        <i class="fas fa-spinner fa-spin fa-3x"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="https://open.spotify.com/user/YOUR_USERNAME" target="_blank" class="spotify-player">
+                <i class="fab fa-spotify"></i>
+                <span>Listen Along</span>
+            </a>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#business">Business</a></li>
+                <li><a href="#hobbies">Hobbies</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section id="home" class="hero">
+        <h1 class="name-highlight">Jacob Wheeler</h1>
+        <p class="subtitle">CPA • Entrepreneur • Surfer</p>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>Professional Excellence</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>Public Accounting Background</h3>
+                <p>Former Senior Manager at Ernst & Young (EY) with extensive experience in audit and assurance services. Specialized in serving Fortune 500 clients across various industries, leading complex audit engagements, and mentoring junior staff members.</p>
+            </div>
+            <div class="card">
+                <h3>Expertise</h3>
+                <ul>
+                    <li>Financial Statement Audits</li>
+                    <li>Tax Planning & Strategy</li>
+                    <li>Business Advisory Services</li>
+                    <li>Risk Assessment</li>
+                    <li>SEC Reporting</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rest of your sections remain the same -->
+
+    <!-- Add JavaScript at the end of body -->
+    <script>
+        // Loading screen
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loader');
+            loader.classList.add('hidden');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
